@@ -1,0 +1,12 @@
+a.out
+test*
+*.o
+*.a
+.vscode
+libft.a
+libftprintf.a
+ft_printf.o
+libftprintf.a
+libft/libft.a
+pft_2019/
+libft/libft.a
