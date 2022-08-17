@@ -1,25 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: statvej <statvej@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 20:28:34 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/05/05 13:51:57 by statvej          ###   ########.fr       */
+/*   Created: 2022/08/17 16:35:31 by fstaryk           #+#    #+#             */
+/*   Updated: 2022/08/17 16:36:10 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/philo.h"
 
-t_list	*ft_lstlast(t_list *lst)
-{
-	t_list	*temp;
-
-	if (!lst)
-		return (0);
-	temp = lst;
-	while (temp->next)
-		temp = temp->next;
-	return (temp);
+void *action(void* arg){
+        
 }

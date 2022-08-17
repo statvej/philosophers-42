@@ -6,14 +6,18 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:26:15 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/08/15 17:29:17 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/08/17 15:33:27 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-int main()
+int main(int ac, char **av)
 {
-    printf("pp\n");
-    ft_printf("pp, but my\n");    
+	if(ac != 5 && ac != 6){
+		print_usage();
+		exit(0);
+	}
+    get_global_data(ac, av);
+    //printf("pp\n");
 }

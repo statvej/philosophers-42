@@ -1,8 +1,6 @@
 NAME = philo
-LIB = libftprintf.a
 SRC = src
 INC = inc
-LIB_F = libftprintf
 OBJ = obj
 CC = gcc
 CFLAGS = #-Wall -Wextra -Werror -I $(LIB_D) -I $(INC)
@@ -17,7 +15,7 @@ DEF_COLOR = \033[0;39m
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIB_F)/$(LIB)
+$(NAME): $(OBJS)
 	@$(CC) $^ $(CFLAGS) -o $(NAME)
 	@echo "$(GREEN) Philo compiled!$(DEF_COLOR)"
 
@@ -27,7 +25,6 @@ $(OBJ)/%.o:	$(SRC)/%.c $(OBJ)
 
 $(OBJ): 
 	@mkdir -p $(OBJ)
-	@make -C $(LIB_F)
 	@echo "$(BLUE)libft is done!$(DEF_COLOR)"
 
 clean:
@@ -35,7 +32,6 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
-	@make fclean -C $(LIB_F)
 	@echo "$(YELLOW)Evrything was cleaned $(DEF_COLOR)"
 
 re: fclean all

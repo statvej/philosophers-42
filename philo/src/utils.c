@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/01 10:14:42 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/04/27 11:34:50 by fstaryk          ###   ########.fr       */
+/*   Created: 2022/08/17 16:11:54 by fstaryk           #+#    #+#             */
+/*   Updated: 2022/08/17 16:39:02 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/philo.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+unsigned long long	get_cur_time(void)
 {
-	int	index;
+	struct timeval	time;
 
-	index = 0;
-	while (src[index])
-	{
-		dest[index] = src[index];
-		index++;
-	}
-	dest[index] = '\0';
-	return (dest);
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
-// int main(){
-//     char *dst = (char*)malloc(sizeof(char) * 20);
-//     char * src = "weqjyqwrg";
-//     ft_strcpy(dst, src);
-//     printf("%s", dst);
-// }
+
+int	diff(unsigned long long pre, unsigned long long post)
+{
+	return (pre - post);
+}

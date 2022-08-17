@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/27 11:33:21 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/05/01 18:52:46 by fstaryk          ###   ########.fr       */
+/*   Created: 2022/08/17 15:10:39 by fstaryk           #+#    #+#             */
+/*   Updated: 2022/08/17 15:25:19 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/philo.h"
 
-int	ft_tolower(int c)
-{
-	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
-	else
-		return (c);
+void print_usage(void){
+    write(STDERR_FILENO, "Usage is $>./philo [num_of_philo] [time_to_die] ", 49);
+    write(STDERR_FILENO, "[time_to_eat] [time_to_sleep] [max_times_to_eat]\n", 50);
 }
