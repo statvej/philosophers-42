@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:41:33 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/08/17 16:40:08 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/18 13:55:28 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,29 @@ void create_mutex(int num, t_gdata *gdata){
 	pthread_mutex_init(&gdata->output);
 }
 
-void create_philo(int num, t_gdata *gdata){
-	gdata->start_time = get_cur_time();
+void init_philo(int num, t_gdata *gdata){
+	gdata->start_time = get_cur_time(); 
 	gdata->dead = 0;
 	gdata->philos[num].ind = num;
 	gdata->philos[num].left_hand = num;
 	gdata->philos[num].right_hand = 1;
 	gdata->philos[num].meal_count = 0;
 	gdata->philos[num].gdata = gdata;
-	pthread_create(&gdata->philos[num].thread, NULL, &action, &gdata->philos[n]);
+	pthread_create(&gdata->philos[num].thread , NULL,\
+		&action, &gdata->philos[num]);
 	gdata->philos[num].last_eat = get_cur_time();
-	n--;
-	while (n)
+	num--;
+	while (n > 0)
 	{
 		gdata->philos[num].ind = num;
 		gdata->philos[num].left_hand = num;
-		gdata->philos[num].right_hand = 1;
+		gdata->philos[num].right_hand = num + 1;
 		gdata->philos[num].meal_count = 0;
 		gdata->philos[num].gdata = gdata;
-		pthread_create(&gdata->philos[num].thread, NULL, &action, &gdata->philos[n]);
+		pthread_create(&gdata->philos[num].thread , NULL,\
+		&action, &gdata->philos[num]);
 		gdata->philos[num].last_eat = get_cur_time();
-		n--;
+		num--;
 	}
 }
 
@@ -59,9 +61,6 @@ t_gdata *get_global_data(int ac, char ** av){
 	else
 		gdata->max_times_eat = -1;
 	create_mutex(gdata->num_of_philo, gdata);
-
-
-
-
+	init_philo(gdata->num_of_philo, gdata);
 	return gdata;
 }
