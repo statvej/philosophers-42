@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:57:22 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/18 16:40:10 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/19 17:06:04 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,9 @@ void    eat(t_philo *philo){
 
     data = philo->gdata;
     pthread_mutex_lock(&data->forks[philo->left_hand]);
-    
+    print_output(philo, "grabed a fork");
+    pthread_mutex_lock(&data->forks[philo->right_hand]);
+    print_output(philo, "grabed a fork");
+    pthread_mutex_lock(&data->eating);
+    print_output();
 }

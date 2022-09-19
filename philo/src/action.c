@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:35:31 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/19 15:00:09 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/19 17:02:12 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,24 @@ void *action(void* arg){
 
 		philo = (t_philo *)arg;
 		data = philo->gdata;
-		printf("CHECK!!!\n");
+		// printf("CHECK!!!\n");
 		if(data->num_of_philo == 1)
 		{
 			ft_sleep(data->time_to_die);
-			printf("CHECK PRINT!!!\n");
+			// printf("CHECK PRINT!!!\n");
 			print_output(philo, "died");
 			return NULL;
+		}
+		if(philo->ind % 2)
+			ft_sleep(data->time_to_eat);
+		while (!data->dead)
+		{
+			eat(philo);
+			if(philo->meal_count == data->max_times_eat)
+				return (NULL);
+			print_output(philo, "is sleeping");
+			ft_sleep(data->time_to_sleep);
+			print_output(philo, "is thinking");
 		}
 		return NULL;
 }
