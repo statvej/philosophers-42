@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:26:41 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/08/17 16:39:08 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/19 15:51:26 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 typedef struct s_philo{
 	pthread_t			thread;
 
-	int					eat_count;
+	int					meal_count;
 	unsigned long long	last_eat;
 	int					left_hand;
 	int					right_hand;
 	int					ind;
 	
-	t_gdata				*gdata;
+	struct s_gdata				*gdata;
 }t_philo;
 
 typedef struct s_gdata
@@ -59,9 +59,18 @@ void				print_usage(void);
 
 unsigned long long	get_cur_time(void);
 int					ft_atoi(const char *s);
+void				ft_sleep(int ms);
 
 //action
 
-void *action(void* arg);
+void				*action(void* arg);
+
+//output
+
+void				print_output(t_philo *philo, char *msg);
+
+//exit
+
+void    destructor(t_gdata *data);
 
 #endif

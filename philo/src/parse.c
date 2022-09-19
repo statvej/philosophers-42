@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:41:33 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/18 13:55:28 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/19 14:53:10 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void create_mutex(int num, t_gdata *gdata){
 		pthread_mutex_init(&gdata->forks[num], NULL);
 		num--;
 	}
-	pthread_mutex_init(&gdata->eating);
-	pthread_mutex_init(&gdata->output);
+	pthread_mutex_init(&gdata->eating, NULL);
+	pthread_mutex_init(&gdata->output, NULL);
 }
 
 void init_philo(int num, t_gdata *gdata){
@@ -34,7 +34,7 @@ void init_philo(int num, t_gdata *gdata){
 		&action, &gdata->philos[num]);
 	gdata->philos[num].last_eat = get_cur_time();
 	num--;
-	while (n > 0)
+	while (num > 0)
 	{
 		gdata->philos[num].ind = num;
 		gdata->philos[num].left_hand = num;
@@ -60,6 +60,7 @@ t_gdata *get_global_data(int ac, char ** av){
 		gdata->max_times_eat = ft_atoi(av[5]);
 	else
 		gdata->max_times_eat = -1;
+	printf("num o filo %d\n", gdata->num_of_philo);
 	create_mutex(gdata->num_of_philo, gdata);
 	init_philo(gdata->num_of_philo, gdata);
 	return gdata;
