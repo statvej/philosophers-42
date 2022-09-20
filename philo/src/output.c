@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 16:40:26 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/20 16:46:45 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/20 19:54:50 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	print_output(t_philo *philo, char *msg){
 	{
 		philo->gdata->dead = 1;
 		printf("%d %d %s\n",\
-			get_cur_time() - philo->gdata->start_time, philo->ind, "is dead");
+			get_cur_time() - philo->gdata->start_time, philo->ind, "died");
 		pthread_mutex_unlock(&philo->gdata->output);
 		return ;
 	}

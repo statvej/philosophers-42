@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:35:31 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/20 16:16:43 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/20 19:55:14 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void *action(void* arg){
 		if(data->num_of_philo == 1)
 		{
 			ft_sleep(data->time_to_die);
-			// printf("CHECK PRINT!!!\n");
 			print_output(philo, "died");
 			return NULL;
 		}
