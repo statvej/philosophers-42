@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:41:33 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/19 14:53:10 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/20 14:42:13 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,23 @@ void init_philo(int num, t_gdata *gdata){
 t_gdata *get_global_data(int ac, char ** av){
 	t_gdata *gdata;
 	
+	if(ft_atoi(av[1]) <= 0 || ft_atoi(av[2]) <= 0 || ft_atoi(av[3]) <= 0
+							|| ft_atoi(av[4]) <= 0)
+		return (NULL);
 	gdata = (t_gdata *)malloc(sizeof(t_gdata));
 	gdata->num_of_philo = ft_atoi(av[1]);
 	gdata->time_to_die = ft_atoi(av[2]);
 	gdata->time_to_eat = ft_atoi(av[3]);
 	gdata->time_to_sleep = ft_atoi(av[4]);
 	if(ac == 6)
+	{
 		gdata->max_times_eat = ft_atoi(av[5]);
+		if(ft_atoi(av[5]) <= 0)
+			return (NULL);
+	}
 	else
 		gdata->max_times_eat = -1;
-	printf("num o filo %d\n", gdata->num_of_philo);
+	
 	create_mutex(gdata->num_of_philo, gdata);
 	init_philo(gdata->num_of_philo, gdata);
 	return gdata;

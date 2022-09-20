@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:26:41 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/19 16:58:07 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/20 13:42:20 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void				print_output(t_philo *philo, char *msg);
 
 void			    destructor(t_gdata *data);
 
-//Eating    
-void				eat(t_philo *philo)
+//Eating
+ 
+void				eat(t_philo *philo);
 
 #endif
