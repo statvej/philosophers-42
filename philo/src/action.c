@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:35:31 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/20 14:53:25 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/20 16:16:43 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void *action(void* arg){
 
 		philo = (t_philo *)arg;
 		data = philo->gdata;
-		// printf("CHECK!!!\n");
+		if(philo->ind == 1)
+			data->all_philos_ready = 1;
+		while (!data->all_philos_ready)
+			usleep(1);
 		if(data->num_of_philo == 1)
 		{
 			ft_sleep(data->time_to_die);

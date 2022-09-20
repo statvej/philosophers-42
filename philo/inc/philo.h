@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:26:41 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/20 13:42:20 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/20 16:03:41 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_gdata
 	pthread_mutex_t		forks[300];
 	pthread_mutex_t 	eating;
 	pthread_mutex_t 	output;
+	pthread_mutex_t		ready;
 	int					dead;
 	
 	unsigned long long	start_time;
@@ -45,11 +46,12 @@ typedef struct s_gdata
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					max_times_eat;
+	int					all_philos_ready;
 }t_gdata;
 
 //Parsing
 
-t_gdata				*get_global_data(int ac, char ** av);
+t_gdata				*get_global_data(int ac, char **av);
 
 //Errors
 

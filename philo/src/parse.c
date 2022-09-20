@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:41:33 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/20 14:42:13 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/20 16:14:26 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_gdata *get_global_data(int ac, char ** av){
 		gdata->max_times_eat = -1;
 	
 	create_mutex(gdata->num_of_philo, gdata);
+	gdata->all_philos_ready = 0;
 	init_philo(gdata->num_of_philo, gdata);
 	return gdata;
 }
