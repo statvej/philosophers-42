@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 16:11:54 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/21 16:00:36 by fstaryk          ###   ########.fr       */
+/*   Created: 2022/09/18 14:57:22 by fstaryk           #+#    #+#             */
+/*   Updated: 2022/09/21 16:35:39 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
+#include "../inc/philo_bonus.h"
 
-unsigned long long	get_cur_time(void)
-{
-	struct timeval	time;
+void	eat(t_philo *philo){
+	t_gdata *data;
 
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	data = philo->gdata;
+	sem_wait(data->forks);
+	print_output(philo, "has taken a fork");
+	sem_wait(data->forks);
+	print_output(philo, "has taken a fork");
+	print_output(philo, "is eating");
+	ft_sleep(data->time_to_eat);
+	philo->last_eat = get_cur_time();
+	philo->meal_count += 1;
+	sem_post(data->forks);
+	sem_post(data->forks);
 }
-
-void ft_sleep(int ms){
-	unsigned long long	i;
-
-	i = get_cur_time();
-	while(1)
-		if((int)(get_cur_time() - i) >= ms)
-			break ;
-}
-
-// int	diff(unsigned long long pre, unsigned long long post)
-// {
-// 	return (pre - post);
-// }

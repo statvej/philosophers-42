@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 16:11:54 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/21 16:00:36 by fstaryk          ###   ########.fr       */
+/*   Created: 2022/08/15 17:26:15 by fstaryk           #+#    #+#             */
+/*   Updated: 2022/09/21 20:14:23 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
+#include "../inc/philo_bonus.h"
 
-unsigned long long	get_cur_time(void)
+int main(int ac, char **av)
 {
-	struct timeval	time;
+	t_gdata * data;
 
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	if(ac != 5 && ac != 6){
+		print_usage();
+		exit(0);
+	}
+    data = get_global_data(ac, av);
+	if (data == NULL)
+	{
+		return 0;
+	}
+	// destructor(data);
+    //printf("pp\n");
 }
-
-void ft_sleep(int ms){
-	unsigned long long	i;
-
-	i = get_cur_time();
-	while(1)
-		if((int)(get_cur_time() - i) >= ms)
-			break ;
-}
-
-// int	diff(unsigned long long pre, unsigned long long post)
-// {
-// 	return (pre - post);
-// }
