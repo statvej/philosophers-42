@@ -6,50 +6,56 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:41:33 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/22 17:05:01 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/22 14:02:24 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
+#include "../inc/philo_bonus.h"
 
 void create_sem(t_gdata *gdata){
-	sem_unlink("death");
 	sem_unlink("forks");
 	sem_unlink("output");
-	gdata->death = sem_open("death", O_CREAT, 777, 1);
-	gdata->forks = sem_open("forks", O_CREAT, 777, gdata->num_of_philo);
-	gdata->output = sem_open("output", O_CREAT, 777, 1);
-	sem_wait(gdata->death);
+	gdata->forks = sem_open("forks", O_CREAT, S_IRWXU, gdata->num_of_philo);
+	gdata->output = sem_open("output", O_CREAT, S_IRWXU, 1);
 }
 
 void init_philo(int num, t_gdata *gdata){
-	gdata->start_time = get_cur_time(); 
+	// gdata->start_time = get_cur_time(); 
 	gdata->dead = 0;
 	while (num > 0)
 	{
+		// gdata->philos[num].last_eat = get_cur_time();
 		gdata->philos[num].ind = num;
 		gdata->philos[num].meal_count = 0;
 		gdata->philos[num].gdata = gdata;
-		gdata->philos[num].last_eat = get_cur_time();
 		num--;
 	}
 }
 
-void	start_process(int n, t_gdata *data)
+int	init_forks(int n, t_gdata *data)
 {
-	pid_t pid;
-	
-	while (n >= 0)
+	data->start_time = get_cur_time();
+	while (n > 0)
 	{
-		pid = fork();
-		if(pid == 0)
-		{
-			data->philos[n].pid = pid;
-			action(&data->philos[n]);
-		}
+		data->philos[n].pid = fork();
+		if (data->philos[n].pid == 0)
+			action(&(data->philos[n]));
 		n--;
 	}
+	return (1);
 }
+// void init_forks(int num, t_gdata *data){
+// 	while (num > 0)
+// 	{
+// 		// data->philos[num].pid = fork();
+// 		if(data->philos[num].pid == 0){
+// 			fprintf(stderr, "creating of a child\n");
+// 			action(&data->philos[num]);
+// 		}
+// 		num--;
+// 	}	
+// 	printf("my processes are %d ,%d", data->philos[1].pid, data->philos[2].pid);
+// }
 
 t_gdata *get_global_data(int ac, char ** av){
 	t_gdata *gdata;
@@ -70,9 +76,9 @@ t_gdata *get_global_data(int ac, char ** av){
 	}
 	else
 		gdata->max_times_eat = -1;
-	
+	// printf("num o philo is %d\n", gdata->num_of_philo);
 	create_sem(gdata);
 	init_philo(gdata->num_of_philo, gdata);
-	start_process(gdata->num_of_philo, gdata);
+	init_forks(gdata->num_of_philo, gdata);
 	return gdata;
 }

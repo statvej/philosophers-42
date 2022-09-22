@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:26:41 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/21 20:40:51 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/22 13:46:55 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <signal.h>
 
 typedef struct s_philo{
-	pid_t				pid;
+	idtype_t			pid;
 
 	int					meal_count;
 	unsigned long long	last_eat;

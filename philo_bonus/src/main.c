@@ -6,11 +6,11 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:26:15 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/21 20:14:23 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/22 15:10:02 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo_bonus.h"
+#include "../inc/philo.h"
 
 int main(int ac, char **av)
 {
@@ -25,6 +25,7 @@ int main(int ac, char **av)
 	{
 		return 0;
 	}
-	// destructor(data);
+	sem_wait(data->death);
+	destructor(data);
     //printf("pp\n");
 }

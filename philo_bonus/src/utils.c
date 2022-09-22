@@ -6,11 +6,11 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:11:54 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/21 19:28:12 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/21 16:00:36 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo_bonus.h"
+#include "../inc/philo.h"
 
 unsigned long long	get_cur_time(void)
 {
