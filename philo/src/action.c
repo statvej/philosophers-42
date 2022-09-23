@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:35:31 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/20 19:55:14 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/23 19:12:38 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,15 @@ void *action(void* arg){
 			ft_sleep(data->time_to_eat);
 		while (!data->dead)
 		{
-			eat(philo);
+			if(!data->dead)
+				eat(philo);
 			if(philo->meal_count == data->max_times_eat)
 				return (NULL);
-			print_output(philo, "is sleeping");
-			ft_sleep(data->time_to_sleep);
-			print_output(philo, "is thinking");
+			if(!data->dead)
+				print_output(philo, "is sleeping");
+				ft_sleep(data->time_to_sleep);
+			if(!data->dead)
+				print_output(philo, "is thinking");
 		}
 		return NULL;
 }

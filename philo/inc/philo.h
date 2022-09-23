@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:26:41 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/21 16:00:07 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/23 18:54:30 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ typedef struct s_philo{
 typedef struct s_gdata
 {
 	t_philo				philos[300];
+	pthread_t			checker;
 
 	pthread_mutex_t		forks[300];
-	pthread_mutex_t 	eating;
+	pthread_mutex_t 	m_death;
 	pthread_mutex_t 	output;
 	int					dead;
 	
@@ -61,6 +62,7 @@ void				print_usage(void);
 unsigned long long	get_cur_time(void);
 int					ft_atoi(const char *s);
 void				ft_sleep(int ms);
+int					ft_strcmp(char *s1, char *s2);
 
 //action
 
@@ -77,5 +79,9 @@ void			    destructor(t_gdata *data);
 //Eating
  
 void				eat(t_philo *philo);
+
+//checker
+
+void				*checker(void *arg);
 
 #endif

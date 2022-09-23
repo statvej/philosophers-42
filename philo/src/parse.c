@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:41:33 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/20 16:14:26 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/23 18:54:50 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void create_mutex(int num, t_gdata *gdata){
 		pthread_mutex_init(&gdata->forks[num], NULL);
 		num--;
 	}
-	pthread_mutex_init(&gdata->eating, NULL);
+	pthread_mutex_init(&gdata->m_death, NULL);
 	pthread_mutex_init(&gdata->output, NULL);
+	pthread_create(&gdata->checker, NULL, &checker, gdata);
 }
 
 void init_philo(int num, t_gdata *gdata){
