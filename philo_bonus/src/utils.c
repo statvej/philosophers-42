@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:11:54 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/21 16:00:36 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/23 15:16:47 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ void ft_sleep(int ms){
 		if((int)(get_cur_time() - i) >= ms)
 			break ;
 }
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
+}
+
 
 // int	diff(unsigned long long pre, unsigned long long post)
 // {

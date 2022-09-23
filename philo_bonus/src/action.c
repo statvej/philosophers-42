@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:35:31 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/22 17:10:28 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/23 14:55:43 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,14 @@ void action(t_philo *philo){
 		{
 			eat(philo);
 			if(philo->meal_count == data->max_times_eat)
-				exit(0);
+				break;;
 			print_output(philo, "is sleeping");
 			ft_sleep(data->time_to_sleep);
 			print_output(philo, "is thinking");
 		}
+		philo->ind = -1;
+		// sem_wait(data->mod);
+		// data->philos_left--;
+		// sem_post(data->mod);
 		exit(0);
 }

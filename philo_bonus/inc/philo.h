@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:26:41 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/22 15:12:34 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/23 15:17:01 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ typedef struct s_gdata
 	sem_t				*forks;
 	sem_t				*output;
 	sem_t				*death;
+	sem_t				*mod;
 	int					dead;
+	pid_t				checker_pid;
 	
 	unsigned long long	start_time;
 	int					num_of_philo;
@@ -49,6 +51,7 @@ typedef struct s_gdata
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					max_times_eat;
+	int					philos_left;
 }t_gdata;
 
 //Parsing
@@ -64,6 +67,7 @@ void				print_usage(void);
 unsigned long long	get_cur_time(void);
 int					ft_atoi(const char *s);
 void				ft_sleep(int ms);
+int					ft_strcmp(char *s1, char *s2);
 
 //action
 void				action(t_philo *philo);
@@ -79,5 +83,9 @@ void			    destructor(t_gdata *data);
 //Eating
  
 void				eat(t_philo *philo);
+
+//Checker
+
+void				checker(t_gdata *data);
 
 #endif
