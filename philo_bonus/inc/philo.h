@@ -6,29 +6,28 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:26:41 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/22 15:12:34 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/27 18:39:32 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 # include <stdio.h>
-# include <pthread.h>
 # include <unistd.h>
-# include <stdlib.h>
 # include <sys/time.h>
-# include <sys/types.h>
-# include <sys/wait.h>
+# include <stdlib.h>
+# include <signal.h>
+# include <string.h>
+# include <pthread.h>
 # include <semaphore.h>
-# include <signal.h> 
+# include <fcntl.h>
+# include <sys/stat.h>
 
 typedef struct s_philo{
 	pid_t				pid;
 
 	int					meal_count;
 	unsigned long long	last_eat;
-	int					left_hand;
-	int					right_hand;
 	int					ind;
 	
 	struct s_gdata				*gdata;
@@ -39,8 +38,7 @@ typedef struct s_gdata
 	t_philo				philos[300];
 
 	sem_t				*forks;
-	sem_t				*output;
-	sem_t				*death;
+	sem_t			 	*output;
 	int					dead;
 	
 	unsigned long long	start_time;
@@ -49,6 +47,7 @@ typedef struct s_gdata
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					max_times_eat;
+	int					all_philos_ready;
 }t_gdata;
 
 //Parsing
@@ -66,7 +65,7 @@ int					ft_atoi(const char *s);
 void				ft_sleep(int ms);
 
 //action
-void				action(t_philo *philo);
+void				*action(t_philo *philo);
 
 //output
 

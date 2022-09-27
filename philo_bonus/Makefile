@@ -25,6 +25,7 @@ $(OBJ)/%.o:	$(SRC)/%.c $(OBJ)
 
 $(OBJ): 
 	@mkdir -p $(OBJ)
+	@echo "$(BLUE)libft is done!$(DEF_COLOR)"
 
 clean:
 	@rm -rf $(OBJ)

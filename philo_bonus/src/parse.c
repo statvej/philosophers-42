@@ -6,20 +6,17 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:41:33 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/22 17:05:01 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/27 19:16:35 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void create_sem(t_gdata *gdata){
-	sem_unlink("death");
+void create_sem(int num, t_gdata *gdata){
 	sem_unlink("forks");
 	sem_unlink("output");
-	gdata->death = sem_open("death", O_CREAT, 777, 1);
-	gdata->forks = sem_open("forks", O_CREAT, 777, gdata->num_of_philo);
-	gdata->output = sem_open("output", O_CREAT, 777, 1);
-	sem_wait(gdata->death);
+	gdata->forks = sem_open("forks", O_CREAT, S_IRWXU, num);
+	gdata->output = sem_open("output", O_CREAT, S_IRWXU, 1);
 }
 
 void init_philo(int num, t_gdata *gdata){
@@ -35,19 +32,20 @@ void init_philo(int num, t_gdata *gdata){
 	}
 }
 
-void	start_process(int n, t_gdata *data)
-{
-	pid_t pid;
+void	init_process(int num, t_gdata *data)
+{ 
+	int	pid;
 	
-	while (n >= 0)
+	while (num > 0)
 	{
 		pid = fork();
 		if(pid == 0)
 		{
-			data->philos[n].pid = pid;
-			action(&data->philos[n]);
+			// printf("ntering tne process %d\n", num);
+			data->philos[num].pid = pid;
+			action(&data->philos[num]);
 		}
-		n--;
+		num--;
 	}
 }
 
@@ -71,8 +69,9 @@ t_gdata *get_global_data(int ac, char ** av){
 	else
 		gdata->max_times_eat = -1;
 	
-	create_sem(gdata);
+	create_sem(gdata->num_of_philo, gdata);
+	gdata->all_philos_ready = 0;
 	init_philo(gdata->num_of_philo, gdata);
-	start_process(gdata->num_of_philo, gdata);
+	init_process(gdata->num_of_philo, gdata);
 	return gdata;
 }
