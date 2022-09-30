@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:05:41 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/27 18:46:59 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:39:12 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void    destroy(t_gdata *data)
 }
 
 void    destructor(t_gdata *data){
-    finish_action(data->num_of_philo, data);
     destroy(data);
+    finish_action(data->num_of_philo, data);
     free(data);
 }

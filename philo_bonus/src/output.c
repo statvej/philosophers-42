@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 16:40:26 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/27 19:18:49 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/30 17:11:44 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	check_if_anybody_died(t_gdata *data){
 		// printf("checking philo num %d\n", i);
 		if(data->philos[i].ind)
 		{
-			// printf("since last eat is %d time to die is %d\n", (int)(t - data->philos[i].last_eat), data->time_to_die);
+			printf("since last eat is %d time to die is %d\n", (int)(t - data->philos[i].last_eat), data->time_to_die);
 			if(data->time_to_die < (int)(t - data->philos[i].last_eat + 2)
 				&& !data->dead)
 			{
 				data->dead = 1;
 				printf("%llu %d %s\n",data->philos[i].last_eat - data->start_time\
 							 + data->time_to_die, data->philos[i].ind, "died");
-				sem_post(data->output);
+				// sem_post(data->output);
 				exit(1);
 			}
 		}
@@ -41,19 +41,20 @@ int	check_if_anybody_died(t_gdata *data){
 
 
 void	print_output(t_philo *philo, char *msg){
+	if (philo->gdata->dead)
+		exit(1);
 	sem_wait(philo->gdata->output);
 		// printf("time no eat %d\t", get_cur_time() - philo->last_eat);
-	// if((int)(get_cur_time() - philo->last_eat) >= philo->gdata->time_to_die &&
-	// 				!philo->gdata->dead)
-	// {
-	// 	philo->gdata->dead = 1;
-	// 	printf("%llu %d %s\n",philo->last_eat - philo->gdata->start_time\
- 	// 					 + philo->gdata->time_to_die, philo->ind, "died");
-	// 	pthread_mutex_unlock(&philo->gdata->output);
+	if((int)(get_cur_time() - philo->last_eat) >= philo->gdata->time_to_die &&
+					!philo->gdata->dead)
+	{
+		philo->gdata->dead = 1;
+		printf("%llu %d %s\n",philo->last_eat - philo->gdata->start_time\
+ 						 + philo->gdata->time_to_die, philo->ind, "died");
+		exit(1);
+	}
+	// if(check_if_anybody_died(philo->gdata))
 	// 	return ;
-	// }
-	if(check_if_anybody_died(philo->gdata))
-		return ;
 	if(!philo->gdata->dead)
 		printf("%llu %d %s\n",\
 			get_cur_time() - philo->gdata->start_time, philo->ind, msg);

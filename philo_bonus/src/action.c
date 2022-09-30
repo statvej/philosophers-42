@@ -6,7 +6,7 @@
 /*   By: fstaryk <fstaryk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:35:31 by fstaryk           #+#    #+#             */
-/*   Updated: 2022/09/27 19:20:02 by fstaryk          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:43:14 by fstaryk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void *action(t_philo *philo){
 		{
 			ft_sleep(data->time_to_die);
 			print_output(philo, "died");
-			return NULL;
+			exit(0);
 		}
-		if(philo->ind % 2)
-			usleep(data->time_to_eat * 500);
+		// if(philo->ind % 2)
+		// 	usleep(data->time_to_eat * 500);
 		while (!data->dead)
 		{
 			eat(philo);
