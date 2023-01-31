@@ -4,7 +4,7 @@
   <img src = "https://user-images.githubusercontent.com/91738456/215802454-136c717c-c15a-4b3a-98db-44d4852b5ca8.png" />
 </p>
 
-Philosophers is a 42 Wolfsburg parallel computing project. An implementation of the Dining Philosophers Problem. A classic computer science project tinvented by Dijkstra. 
+Philosophers is a 42 Wolfsburg parallel computing project. An implementation of the Dining Philosophers Problem. A classic computer science project tinvented by Dijkstra. (Grade 125/100)
 
 Main concepts that are used : thread and mutexes for mandatory part, semaphoras and processes for bonus.
  
